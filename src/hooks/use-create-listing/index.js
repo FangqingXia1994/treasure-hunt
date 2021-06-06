@@ -1,12 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-
-// const parameters = {
-//     category : undefined,
-//     keyword : phone,
-//     latitude : 70.01,
-//     longititude : -40.00,
-//  }
+import { TOKEN_KEY } from 'constants/constants';
 
 const useCreateListing = () => {
   const [isCreating, setIsCreating] = useState(false);
@@ -14,12 +8,12 @@ const useCreateListing = () => {
   const Creating = async (parameters) => {
 
     // define the request
-    const url = `/listing`;
+    const url = `/api/listing`;
 
     const formData = new FormData();
-    formData.append('id', 1);
+    formData.append('id', );
     formData.append('string', );
-    formData.append('yinyang.png', fs.createReadStream('./yinyang.png'));
+    formData.append('picture_1', fs.createReadStream('./yinyang.png'));
 
     const returnObj = {};
 
@@ -27,7 +21,8 @@ const useCreateListing = () => {
     try {
       const response = await axios.post(url, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
         }
       });
       if (response.status === 200) {
