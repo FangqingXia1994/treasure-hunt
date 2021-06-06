@@ -5,7 +5,7 @@ import { TOKEN_KEY } from 'constants/constants';
 const useCreateListing = () => {
   const [isCreating, setIsCreating] = useState(false);
 
-  const Creating = async (parameters) => {
+  const createListing = async (parameters) => {
 
     // define the request
     const url = `/api/listing`;
@@ -29,7 +29,7 @@ const useCreateListing = () => {
         returnObj.ListingId = response.data;
       }
     } catch (err) {
-      returnObj.error = err.response.status;
+      returnObj.error = err;
     } finally {
       setIsCreating(false);
       return returnObj;
